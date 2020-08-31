@@ -8,9 +8,16 @@ package homework;
 //todo write an implementation of this interface
 
 public interface DynamicIntegerArray {
+
     int get(int index);
 
-    void add(int value);  //todo add value to the end of this data structure
+    void push_back(int value);
+
+    int pop_back(int value);
+
+    void push_front(int value);
+
+    int pop_front(int value);
 
     int size();
 
