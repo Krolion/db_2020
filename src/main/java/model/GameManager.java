@@ -2,7 +2,8 @@ package model;
 
 public class GameManager {
     void fight(Hero c1, Hero c2) {
-        System.out.println("Our heroes, " + c1.fullName() + " and " + c2.fullName() + ", start a fight!");
+        System.out.println("Our heroes, " + c1.generateDescription() + " and " + c2.generateDescription() +
+                ", start a fight!");
         if (!c1.isAlive() & !c2.isAlive()) {
             System.out.println("Unfortunately, they are both dead, so fight is kind of boring.");
             return;
