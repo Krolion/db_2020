@@ -17,7 +17,7 @@ public class Elf extends Hero {
     void kick(Hero c) {
         if (c.power < this.power) {
             c.takeDamage(c.hp);
-            lastKickDesc = className + " " + personalName + " uses some ancien elf magic " +
+            lastKickDesc = className + " " + personalName + " uses some ancient elf magic " +
                     "and instantly kills his opponent!";
         }
         else {
