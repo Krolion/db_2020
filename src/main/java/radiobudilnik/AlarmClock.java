@@ -1,9 +1,9 @@
 package radiobudilnik;
 
-public class AlarmClock {
+public class AlarmClock implements GeneralAlarmClock{
 
-    public void setVolume() {
-        System.out.println("Volume set on alarm clock");
+    public void setTime() {
+        System.out.println("Time set on alarm clock");
     }
 
     public void stopAlarm() {

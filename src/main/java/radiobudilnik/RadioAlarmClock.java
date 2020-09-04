@@ -1,6 +1,6 @@
 package radiobudilnik;
 
-public class RadioAlarmClock {
+public class RadioAlarmClock implements GeneralAlarmClock, GeneralRadio {
 
     private final Radio radioPart;
     private final AlarmClock alarmClockPart;
@@ -10,17 +10,23 @@ public class RadioAlarmClock {
         alarmClockPart = new AlarmClock();
     }
 
-    public Radio useRadio() {
-        return radioPart;
+    @Override
+    public void setVolume() {
+        this.radioPart.setVolume();
     }
 
-    public AlarmClock useAlarmClock() {
-        return alarmClockPart;
+    @Override
+    public void changeChannel() {
+        this.radioPart.changeChannel();
     }
 
-    public static void main(String[] args) {
-        RadioAlarmClock iphone = new RadioAlarmClock();
-        iphone.useAlarmClock().stopAlarm();
-        iphone.useRadio().changeChannel();
+    @Override
+    public void setTime() {
+        this.alarmClockPart.setTime();
+    }
+
+    @Override
+    public void stopAlarm() {
+        this.alarmClockPart.stopAlarm();
     }
 }
