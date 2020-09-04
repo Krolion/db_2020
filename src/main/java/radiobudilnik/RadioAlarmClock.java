@@ -1,9 +1,5 @@
 package radiobudilnik;
 
-import model.GameManager;
-import model.Hero;
-import model.HeroFactory;
-
 public class RadioAlarmClock {
 
     private final Radio radioPart;
