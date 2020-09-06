@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 /**
  * @author Evgeny Borisov
  */
-@RequiredArgsConstructor
 public enum Operator {
     PLUS("+", new Plus(), 6),
     MINUS("-", new Minus(), 6),

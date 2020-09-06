@@ -5,7 +5,7 @@ package homework.exams_generation;
  */
 abstract public class Exercise {
     protected String exerciseDesc;
-    protected String answer;
+    public String answer;
 
     public boolean giveAnswer(String myAnswer) {
         return answer.equals(myAnswer);
