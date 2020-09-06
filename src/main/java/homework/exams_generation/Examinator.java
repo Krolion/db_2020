@@ -9,7 +9,7 @@ public class Examinator {
 
     public List<Exercise> generate(int amount) {
 
-        return null;//todo finish this
+        return null;
     }
 
 }

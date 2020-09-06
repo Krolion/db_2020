@@ -13,17 +13,19 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum Operator {
-    PLUS("+", new Plus()),
-    MINUS("-", new Minus()),
-    MULTIPLY("*", new Multiply()),
-    DIVIDE("/", new Divide());
+    PLUS("+", new Plus(), 6),
+    MINUS("-", new Minus(), 6),
+    MULTIPLY("*", new Multiply(), 7),
+    DIVIDE("/", new Divide(), 7);
 
     private final String sign;
     private final Operation operation;
+    private final int precedence;
 
-    Operator(String s, Operation operation) {
+    Operator(String s, Operation operation, int precedence) {
         this.sign = s;
         this.operation = operation;
+        this.precedence = precedence;
     }
 
     public static Operator findBySign(String sign) throws IllegalAccessException {
@@ -35,7 +37,24 @@ public enum Operator {
         throw new IllegalAccessException("No such operator as \"" + sign + "\"");
     }
 
+    public static boolean isOperation(String sign) {
+        for (Operator operator : values()) {
+            if (operator.sign.equals(sign)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Operation getOperation() {
         return this.operation;
+    }
+
+    public int getPrecedence() {
+        return precedence;
+    }
+
+    public String getSign() {
+        return sign;
     }
 }

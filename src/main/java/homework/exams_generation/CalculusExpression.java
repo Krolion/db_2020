@@ -1,10 +1,13 @@
 package homework.exams_generation;
 
+import lombok.Getter;
+
+@Getter
 public class CalculusExpression {
     private CalculusExpression leftExpression = null;
     private CalculusExpression rightExpression = null;
     private Operator operator;
-    private boolean isExpression = false;
+    public boolean isExpression = false;
     private double value = 0;
 
     public CalculusExpression(CalculusExpression leftExpression,
@@ -20,6 +23,10 @@ public class CalculusExpression {
         this.value = value;
     }
 
+    public CalculusExpression(String expression) {
+
+    }
+
     public double calculate() {
         if (this.isExpression) {
             return operator.getOperation().calculate(leftExpression.calculate(),
@@ -28,5 +35,22 @@ public class CalculusExpression {
         else {
             return value;
         }
+    }
+
+    @Override
+    public String toString() {
+        String leftExpressionString = leftExpression.toString();
+        String rightExpressionString = rightExpression.toString();
+        if (leftExpression.isExpression) {
+            if (operator.getPrecedence() > leftExpression.operator.getPrecedence()) {
+                leftExpressionString = "(" + leftExpressionString + ")";
+            }
+        }
+        if (rightExpression.isExpression) {
+            if (operator.getPrecedence() >= rightExpression.operator.getPrecedence()) {
+                rightExpressionString = "(" + rightExpressionString + ")";
+            }
+        }
+        return leftExpressionString + operator.getSign() + rightExpressionString;
     }
 }
