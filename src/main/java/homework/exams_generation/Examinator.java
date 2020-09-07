@@ -1,49 +1,31 @@
 package homework.exams_generation;
 
-import demo.Employee;
+import heroes.RandomUtil;
+import lombok.RequiredArgsConstructor;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.stream.Stream;
 
 /**
  * @author Evgeny Borisov
  */
+@RequiredArgsConstructor
 public class Examinator {
 
-    private final ExerciseGenerator generator = new ExerciseGenerator();
-    private ArrayList<Exercise> classwork;
+    private final List<ExerciseGenerator> exerciseGenerators;
 
-    public Examinator() throws InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
-    }
+    public List<Exercise> generate(int amount) {
 
-    public void generateNewSet(int amount) {
-        ArrayList<Exercise> base = new ArrayList<>();
-        for (int i = 0; i < amount; ++i) {
-            base.add(generator.getNewExercise());
+
+            System.out.println();
+
+        List<Exercise> exercises = new ArrayList<>();
+
+        for (int i = 0; i < amount; i++) {
+            exercises.add(RandomUtil.randomItem(exerciseGenerators).generate());
         }
-        classwork = base;
-    }
 
-    public void conductClasswork() {
-        Scanner reader = new Scanner(System.in);
-        for (Exercise exercise : classwork) {
-            System.out.println(exercise.exerciseDesc);
-            if (exercise.giveAnswer(reader.nextLine())) {
-                System.out.println("Good");
-            }
-            else {
-                System.out.println("No, it's " + exercise.answer);
-            }
-        }
+        return exercises;
     }
-
-    public static void main(String[] args) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        Examinator examinator = new Examinator();
-        examinator.generateNewSet(10);
-        examinator.conductClasswork();
-    }
-
 }
