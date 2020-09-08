@@ -1,25 +1,23 @@
 package my_spring;
 
-import heroes.RandomUtil;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.Field;
 
+/**
+ * @author Evgeny Borisov
+ */
 public class InjectByTypeAnnotationObjectConfigurer implements ObjectConfigurer {
-    @Override
     @SneakyThrows
+    @Override
     public void configure(Object t) {
-        Class<?> implClass = t.getClass();
-        Field[] fields = implClass.getDeclaredFields();
-        ObjectFactory instance = ObjectFactory.getInstance();
+        Field[] fields = t.getClass().getDeclaredFields();
         for (Field field : fields) {
-            InjectByType annotation = field.getAnnotation(InjectByType.class);
-            if (annotation != null) {
-                Object newObject = instance.createObject(field.getDeclaringClass());
+            if (field.isAnnotationPresent(InjectByType.class)) {
+                Object value = ObjectFactory.getInstance().createObject(field.getType());
                 field.setAccessible(true);
-                field.set(t, newObject);
+                field.set(t,value);
             }
-
         }
     }
 }
