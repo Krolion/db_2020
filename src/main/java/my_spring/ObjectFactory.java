@@ -31,7 +31,7 @@ public class ObjectFactory {
     private Reflections scanner = new Reflections("my_spring");
 
     @SneakyThrows
-    private ObjectFactory() {
+    ObjectFactory() {
 
         Set<Class<? extends ObjectConfigurer>> classes = scanner.getSubTypesOf(ObjectConfigurer.class);
         for (Class<? extends ObjectConfigurer> aClass : classes) {
@@ -39,10 +39,6 @@ public class ObjectFactory {
                 objectConfigurers.add(aClass.getDeclaredConstructor().newInstance());
             }
         }
-    }
-
-    public static ObjectFactory getInstance() {
-        return objectFactory;
     }
 
     @SneakyThrows
