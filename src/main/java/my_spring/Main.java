@@ -14,10 +14,11 @@ public class Main {
                 );
 
 
+        JavaConfig config = new JavaConfig(map, "my_spring");
+        ApplicationContext context = new ApplicationContext(config);
 
+        IRobot iRobot = context.getBean(IRobot.class);
 
-
-        IRobot iRobot = ObjectFactory.getInstance().createObject(IRobot.class);
         iRobot.cleanRoom();
     }
 }
