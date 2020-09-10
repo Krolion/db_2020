@@ -6,6 +6,7 @@ import lombok.Setter;
 import my_spring.InjectByType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * @author Evgeny Borisov
  */
 
-
+@Component
 public class TalkingRobotImpl implements TalkingRobot {
 
 
