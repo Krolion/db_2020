@@ -5,7 +5,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 
 public class InjectRandoIntAnnotationBeanPostProcessor implements BeanPostProcessor {
 
-    private InjectRandomIntAnnotationObjectConfigurer configurer = new InjectRandomIntAnnotationObjectConfigurer
+    private InjectRandomIntAnnotationObjectConfigurer configurer = new InjectRandomIntAnnotationObjectConfigurer();
 
     public Object postProcessBeforeInitialization(Object bean, String beanName) {
         configurer.configure(bean, null);
