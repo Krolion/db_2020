@@ -1,10 +1,12 @@
 package real_spring.quoters;
 
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -16,16 +18,17 @@ import java.util.List;
  * @author Evgeny Borisov
  */
 
+
 @Component
-@PropertySource("classpath:application.properties")
+@Film
 public class TerminatorQuoter implements Quoter {
 
-
+    @Setter
     private List<String> messages;
 
     @Autowired
-    public void setMessages(@Value("${terminator}") String[] messages) {
-        this.messages = Arrays.asList(messages);
+    public void setWords(@Value("${terminator}") String[] words) {
+        this.messages = Arrays.asList(words);
     }
 
     @Override
@@ -33,10 +36,12 @@ public class TerminatorQuoter implements Quoter {
         messages.forEach(System.out::println);
     }
 
+
     @PostConstruct
     public void init() {
         System.out.println("Мне нужна твоя одежду, ботинки и мотоцикл");
     }
+
 
     @PreDestroy
     public void killAll() {

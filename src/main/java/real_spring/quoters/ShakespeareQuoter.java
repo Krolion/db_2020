@@ -1,10 +1,10 @@
 package real_spring.quoters;
 
-import com.google.j2objc.annotations.Property;
 import lombok.Setter;
 import my_spring.InjectRandomInt;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -14,10 +14,10 @@ import javax.annotation.PostConstruct;
  */
 
 @Component
-@PropertySource("classpath:application.properties")
+@Book
+@Primary
 public class ShakespeareQuoter implements Quoter {
-    @Setter
-    @Value("poor Joric")
+    @Value("${shake}")
     private String message;
 
     @InjectRandomInt(min = 4,max = 7)

@@ -1,4 +1,4 @@
-package my_spring;
+package real_spring.quoters;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class BeanDefinitionValidatorBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+
 
         String[] names = beanFactory.getBeanDefinitionNames();
         System.out.println("names.length = " + names.length);
